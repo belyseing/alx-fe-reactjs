@@ -8,6 +8,6 @@ function MainContent(){
   );
 }
 
-export default maincontent;
+export default MainContent;
 
 
