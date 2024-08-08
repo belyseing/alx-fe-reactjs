@@ -13,8 +13,13 @@ function App() {
   const [count, setCount] = useState(0);
   return (
     <>
+    <div>
+
     <Header />
-    <MainContent/>
+    <MainContent />  {/* Include MainContent component */}
+     <Footer />
+
+    </div>
       <WelcomeMessage /> {/* Include the WelcomeMessage component here */}
 
       <div>
@@ -37,7 +42,6 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-      <Footer />
     </>
   );
 }
