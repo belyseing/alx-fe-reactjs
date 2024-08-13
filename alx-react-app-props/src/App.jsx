@@ -7,22 +7,19 @@ import UserContext from './UserContext';
 
 
 
-function App() {
-  const userData = { name: "Jane Doe", email: "jane.doe@example.com" };
-
-  return (
-    <UserContext.Provider value={userData}>
-      <ProfilePage />
-    </UserContext.Provider>
-  );
-}
-
 
 function App() {
   const [count, setCount] = useState(0)
+  const userData = { name: "Jane Doe", email: "jane.doe@example.com" };
 
+}
   return (
+
     <>
+    <UserContext.Provider value={userData}>
+      <ProfilePage />
+    </UserContext.Provider>
+  
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
