@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <nav>
-      <ul style={{ display: "flex", gap: "20px" }}>
+      <ul style={{ display: "flex", gap: "20px", backgroundColor: "white" ,justifyContent: "space-between"}}>
         <li>
           <Link to="/">Home</Link>
         </li>
