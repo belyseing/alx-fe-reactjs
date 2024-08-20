@@ -1,15 +1,18 @@
-import React from "react";
-import RecipeList from "./components/RecipeList";
-import AddRecipeForm from "./components/AddRecipeForm";
+import React from 'react';
+import RecipeList from './components/RecipeList';
+import AddRecipeForm from './components/AddRecipeForm';
 
-function App() {
+
+const App = () => {
   return (
     <div>
-      <h1>Recipe Sharing App</h1>
-      <AddRecipeForm />
+      <h1>Recipe Manager</h1>
+      {/* Display the list of recipes */}
       <RecipeList />
+      {/* Form to add new recipes */}
+      <AddRecipeForm />
     </div>
   );
-}
+};
 
 export default App;
