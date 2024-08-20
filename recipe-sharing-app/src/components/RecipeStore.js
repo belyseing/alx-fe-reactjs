@@ -1,5 +1,4 @@
-import create from "zustand";
-import useRecipeStore from './components/recipeStore';
+import create from 'zustand';
 
 const useRecipeStore = create((set) => ({
   recipes: [],

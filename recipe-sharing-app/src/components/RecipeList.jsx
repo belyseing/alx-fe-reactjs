@@ -2,7 +2,7 @@ import React from 'react';
 import useRecipeStore from './components/recipeStore';
 
 const RecipeList = () => {
-  const recipes = useRecipeStore((state) => state.recipes);
+  const {recipes} = useRecipeStore((state) => state.recipes);
 
   return (
     <div>
