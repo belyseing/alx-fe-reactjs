@@ -7,8 +7,9 @@ const EditRecipeForm = ({ recipe }) => {
   const [ingredients, setIngredients] = useState(recipe.ingredients.join(", "));
   const updateRecipe = useRecipeStore((state) => state.updateRecipe);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // Handle form submission
+  const handleSubmit = (event) => {
+    event.preventDefault(); // Prevent the default form submission behavior
 
     const updatedRecipe = {
       ...recipe,
