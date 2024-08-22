@@ -1,15 +1,22 @@
 import { create } from "zustand";
 
-const useRecipeStore = create((set) => ({
-  recipes: [],
+export const useRecipeStore = create((set) => ({
+  recipes: [
+    { id: 1, title: "Spaghetti", description: "Delicious spaghetti recipe" },
+    { id: 2, title: "Pancakes", description: "Fluffy pancakes with syrup" },
+  ],
+
+  // Action to add a new recipe
   addRecipe: (newRecipe) =>
     set((state) => ({ recipes: [...state.recipes, newRecipe] })),
 
-  deleteRecipe: (id) =>
+  // Action to delete a recipe
+  deleteRecipe: (recipeId) =>
     set((state) => ({
-      recipes: state.recipes.filter((recipe) => recipe.id !== id),
+      recipes: state.recipes.filter((recipe) => recipe.id !== recipeId),
     })),
 
+  // Action to update a recipe
   updateRecipe: (updatedRecipe) =>
     set((state) => ({
       recipes: state.recipes.map((recipe) =>

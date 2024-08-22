@@ -1,13 +1,13 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-import useRecipeStore from "./recipeStore";
+// import { useParams } from "react-router-dom";
+import {useRecipeStore} from "./recipeStore";
 import EditRecipeForm from "./EditRecipeForm";
 import DeleteRecipeButton from "./DeleteRecipeButton";
 
 const RecipeDetails = () => {
-  const { recipeId } = useParams(); // Get the recipe ID from the route
+  // const { recipeId } = useParams(); // Get the recipe ID from the route
   const recipe = useRecipeStore((state) =>
-    state.recipes.find((recipe) => recipe.id === parseInt(recipeId))
+    state.recipes.find((recipe) => recipe.id === recipeId)
   );
 
   if (!recipe) {
@@ -18,15 +18,9 @@ const RecipeDetails = () => {
     <div>
       <h1>{recipe.title}</h1>
       <p>{recipe.description}</p>
-      <h3>Ingredients:</h3>
-      <ul>
-        {recipe.ingredients.map((ingredient, index) => (
-          <li key={index}>{ingredient}</li>
-        ))}
-      </ul>
       {/* Render EditRecipeForm and DeleteRecipeButton here */}
-      <EditRecipeForm recipe={recipe} />
-      <DeleteRecipeButton recipeId={recipe.id} />
+      <EditRecipeForm recipeId={recipeId} />
+      <DeleteRecipeButton recipeId={recipeId} />
     </div>
   );
 };
