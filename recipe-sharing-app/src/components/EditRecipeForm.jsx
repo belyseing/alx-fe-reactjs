@@ -1,53 +1,42 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import useRecipeStore from "./recipeStore";
 
-const EditRecipeForm = ({ recipe }) => {
-  const [title, setTitle] = useState(recipe.title);
-  const [description, setDescription] = useState(recipe.description);
-  const [ingredients, setIngredients] = useState(recipe.ingredients.join(", "));
+const EditRecipeForm = () => {
+  const { recipeId } = useParams();
+  const navigate = useNavigate();
+  const recipe = useRecipeStore((state) =>
+    state.recipes.find((recipe) => recipe.id === parseInt(recipeId, 10))
+  );
   const updateRecipe = useRecipeStore((state) => state.updateRecipe);
 
-  // Handle form submission
-  const handleSubmit = (event) => {
-    event.preventDefault(); // Prevent the default form submission behavior
+  const [title, setTitle] = useState(recipe?.title || "");
+  const [description, setDescription] = useState(recipe?.description || "");
 
-    const updatedRecipe = {
-      ...recipe,
-      title,
-      description,
-      ingredients: ingredients.split(",").map((ing) => ing.trim()),
-    };
-
-    updateRecipe(updatedRecipe);
-    // Optionally, provide feedback or redirect after updating
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    updateRecipe({ id: parseInt(recipeId, 10), title, description });
+    navigate(`/recipes/${recipeId}`);
   };
+
+  if (!recipe) return <div>Recipe not found</div>;
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <label>Title:</label>
-        <input
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-      </div>
-      <div>
-        <label>Description:</label>
-        <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-      </div>
-      <div>
-        <label>Ingredients (comma-separated):</label>
-        <input
-          type="text"
-          value={ingredients}
-          onChange={(e) => setIngredients(e.target.value)}
-        />
-      </div>
-      <button type="submit">Save Changes</button>
+      <input
+        type="text"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        placeholder="Recipe Title"
+        required
+      />
+      <textarea
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+        placeholder="Recipe Description"
+        required
+      />
+      <button type="submit">Update Recipe</button>
     </form>
   );
 };

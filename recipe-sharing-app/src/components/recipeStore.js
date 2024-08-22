@@ -7,22 +7,28 @@ export const useRecipeStore = create((set) => ({
   ],
 
   // Action to add a new recipe
-  addRecipe: (newRecipe) =>
-    set((state) => ({ recipes: [...state.recipes, newRecipe] })),
+  addRecipe: (newRecipe) => {
+    console.log("Adding Recipe:", recipe);
+    set((state) => ({ recipes: [...state.recipes, newRecipe] }));
+  },
 
   // Action to delete a recipe
-  deleteRecipe: (recipeId) =>
+  deleteRecipe: (recipeId) => {
+    console.log("Deleting Recipe ID:", id);
     set((state) => ({
       recipes: state.recipes.filter((recipe) => recipe.id !== recipeId),
-    })),
+    }));
+  },
 
   // Action to update a recipe
-  updateRecipe: (updatedRecipe) =>
+  updateRecipe: (updatedRecipe) => {
+    console.log("Updating Recipe:", updatedRecipe);
     set((state) => ({
       recipes: state.recipes.map((recipe) =>
         recipe.id === updatedRecipe.id ? updatedRecipe : recipe
       ),
-    })),
+    }));
+  },
   setRecipes: (newRecipes) => set({ recipes: newRecipes }), // Add this method
 }));
 
