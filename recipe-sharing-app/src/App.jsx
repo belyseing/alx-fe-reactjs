@@ -3,6 +3,8 @@ import RecipeList from "./components/RecipeList";
 import SearchBar from "./components/SearchBar";
 import AddRecipeForm from "./components/AddRecipeForm";
 import RecipeDetails from "./components/RecipeDetails";
+import FavoritesList from "./components/FavoritesList.jsx";
+import RecommendationsList from "./components/RecommendationsList";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 // Import other components as needed
 
@@ -12,6 +14,8 @@ const App = () => {
       <h1>Recipe Sharing App</h1>
       <SearchBar />
       <RecipeList />
+      <FavoritesList />
+      <RecommendationsList />
       <Router>
         <Routes>
           <Route path="/" element={<RecipeList />} />{" "}

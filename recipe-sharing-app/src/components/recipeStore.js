@@ -14,6 +14,32 @@ export const useRecipeStore = create((set) => ({
         "A spicy and flavorful chicken curry made with coconut milk.",
     },
   ],
+  favorites: [],
+
+  // Action to add a recipe to favorites
+  addFavorite: (recipeId) =>
+    set((state) => ({
+      favorites: [...state.favorites, recipeId],
+    })),
+
+  // Action to remove a recipe from favorites
+  removeFavorite: (recipeId) =>
+    set((state) => ({
+      favorites: state.favorites.filter((id) => id !== recipeId),
+    })),
+
+  // State for holding recommended recipes
+  recommendations: [],
+
+  // Action to generate recommendations based on favorites
+  generateRecommendations: () =>
+    set((state) => {
+      const recommended = state.recipes.filter(
+        (recipe) => state.favorites.includes(recipe.id) && Math.random() > 0.5
+      );
+      return { recommendations: recommended };
+    }),
+
   searchTerm: "", // State to hold the search term
   filteredRecipes: [], // Array to store filtered recipes
 
