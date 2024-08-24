@@ -12,20 +12,15 @@ const RecipeList = () => {
 
   return (
     <div className="recipe-list">
-      {filteredRecipes.length > 0 ? (
-        filteredRecipes.map((recipe) => (
-          <div key={recipe.id} className="recipe-item">
-            <h2>
-              <Link to={`/recipes/${recipe.id}`}>{recipe.title}</Link>
-            </h2>
-            {/* Display additional recipe details here */}
-          </div>
-        ))
-      ) : (
-        <p>No recipes found</p>
-      )}
+      {filteredRecipes.map((recipe) => (
+        <div key={recipe.id} className="recipe-item">
+          <h2>
+            <Link to={`/recipes/${recipe.id}`}>{recipe.title}</Link>
+          </h2>
+          {/* Display additional recipe details here */}
+        </div>
+      ))}
     </div>
   );
 };
-
 export default RecipeList;
