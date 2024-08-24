@@ -1,5 +1,6 @@
 import React from "react";
 import RecipeList from "./components/RecipeList";
+import SearchBar from "./components/SearchBar.jsx";
 import AddRecipeForm from "./components/AddRecipeForm";
 import RecipeDetails from "./components/RecipeDetails";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -7,17 +8,11 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<RecipeList />} />{" "}
-        {/* Route for the homepage */}
-        <Route path="/recipe/:recipeId" element={<RecipeDetails />} />{" "}
-        {/* Route for recipe details */}
-        <Route path="/add-recipe" element={<AddRecipeForm />} />{" "}
-        {/* Route for adding a new recipe */}
-        {/* Add other routes here */}
-      </Routes>
-    </Router>
+    <div className="app">
+      <h1>Recipe Sharing App</h1>
+      <SearchBar />
+      <RecipeList />
+    </div>
   );
 };
 
