@@ -7,11 +7,20 @@ const RegistrationForm = () => {
 
   const handlesubmit = (e) => {
     e.preventDefault();
-    // Add validation logic here
-    if (!username || !email || !password) {
-      alert("Please fill in all fields");
+    // Reset errors
+    setErrors({});
+    // Validate form fields
+    const validationErrors = {};
+    if (!username) validationErrors.username = "Username is required";
+    if (!email) validationErrors.email = "Email is required";
+    if (!password) validationErrors.password = "Password is required";
+
+    // If there are validation errors, set the errors state and stop submission
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
       return;
     }
+
     // Simulate API call
     console.log("User Registered:", { username, email, password });
   };
