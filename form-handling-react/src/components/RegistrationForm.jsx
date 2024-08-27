@@ -4,18 +4,31 @@ const RegistrationForm = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({});
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const errors = {};
 
-    // Basic validation
-    if (!username || !email || !password) {
-      alert("All fields are required");
-      return;
+    if (!username) {
+      errors.username = "Username is required";
     }
-
-    // Simulate form submission
-    console.log({ username, email, password });
+    if (!email) {
+      errors.email = "Email is required";
+    }
+    if (!password) {
+      errors.password = "Password is required";
+    }
+    if (Object.keys(errors).length > 0) {
+      setErrors(errors);
+    } else {
+      // submit the form
+      console.log({ username, email, password });
+      // Clear form fields
+      setUsername("");
+      setEmail("");
+      setPassword("");
+    }
   };
 
   return (
