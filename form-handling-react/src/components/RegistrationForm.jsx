@@ -4,24 +4,38 @@ const RegistrationForm = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({});
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const errors = {};
 
-    // Basic validation
-    if (!username || !email || !password) {
-      alert("All fields are required");
-      return;
+    if (!username) {
+      errors.username = "Username ";
     }
-
-    // Simulate form submission
-    console.log({ username, email, password });
+    if (!email) {
+      errors.email = "Email";
+    }
+    if (!password) {
+      errors.password = "Password";
+    }
+    if (Object.keys(errors).length > 0) {
+      setErrors(errors);
+    } else {
+      // submit the form
+      console.log({ username, email, password });
+      // Clear form fields
+      setUsername("");
+      setEmail("");
+      setPassword("");
+    }
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <div>
         <label htmlFor="username">Username</label>
+        <Field name="username" type="text" />
         <input
           id="username"
           name="username"
@@ -33,6 +47,7 @@ const RegistrationForm = () => {
 
       <div>
         <label htmlFor="email">Email</label>
+        <Field name="username" type="password" />
         <input
           id="email"
           name="email"
@@ -44,6 +59,7 @@ const RegistrationForm = () => {
 
       <div>
         <label htmlFor="password">Password</label>
+        <Field name="password" type="password" />
         <input
           id="password"
           name="password"
