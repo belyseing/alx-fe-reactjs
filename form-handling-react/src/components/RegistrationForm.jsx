@@ -1,67 +1,62 @@
+import React from "react";
 import { Formik } from "formik";
-import React, { useState } from "react";
+import * as Yup from "yup";
 
 const RegistrationForm = () => {
-  const [username, setUsename] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handlesubmit = (e) => {
-    e.preventDefault();
-    // Reset errors
-    setErrors({});
-    // Validate form fields
-    const validationErrors = {};
-    if (!username) validationErrors.username = "Username is required";
-    if (!email) validationErrors.email = "Email is required";
-    if (!password) validationErrors.password = "Password is required";
-
-    // If there are validation errors, set the errors state and stop submission
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return;
-    }
-
-    // Simulate API call
-    console.log("User Registered:", { username, email, password });
-  };
-
   return (
-    <form onSubmit={formk.handlesubmit}>
-      <div>
-        <label htmlFor="username">Username</label>
-        <input
-          id="username"
-          name="username"
-          type="text"
-          onChange={Formik.handlechange}
-          value={Formik.values.username}
-        />
-        {Formik.errors.username && <div>{Formik.errors.username}</div>}
-      </div>
+    <Formik
+      initialValues={{ username: "", email: "", password: "" }}
+      validationSchema={Yup.object({
+        username: Yup.string().required("Required"),
+        email: Yup.string().email("Invalid email address").required("Required"),
+        password: Yup.string().required("Required"),
+      })}
+      onSubmit={(values) => {
+        console.log(values);
+      }}
+    >
+      {({ handleChange, handleSubmit, values, errors }) => (
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="username">Username</label>
+            <input
+              id="username"
+              name="username"
+              type="text"
+              onChange={handleChange}
+              value={values.username}
+            />
+            {errors.username && <div>{errors.username}</div>}
+          </div>
 
-      <div>
-        <label htmlFor="email">Email</label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          onChange={Formik.handlechange}
-          value={Formik.value.email}
-        />
-      </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <input
-          id="password"
-          name="password"
-          type="password"
-          onChange={Formik.handlechange}
-          value={Formik.value.password}
-        />
-      </div>
-      <button type="submit"></button>
-    </form>
+          <div>
+            <label htmlFor="email">Email</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              onChange={handleChange}
+              value={values.email}
+            />
+            {errors.email && <div>{errors.email}</div>}
+          </div>
+
+          <div>
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              onChange={handleChange}
+              value={values.password}
+            />
+            {errors.password && <div>{errors.password}</div>}
+          </div>
+
+          <button type="submit">Submit</button>
+        </form>
+      )}
+    </Formik>
   );
 };
 
