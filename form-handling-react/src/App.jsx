@@ -5,8 +5,7 @@ import FormikForm from "./components/formikForm.jsx";
 function App() {
   return (
     <div className="App">
-      <h1>User Registration with Formik</h1>
-      <RegistrationForm />
+      <h1> Registration Here</h1>
       <FormikForm />
     </div>
   );
