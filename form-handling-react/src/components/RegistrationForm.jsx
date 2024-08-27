@@ -35,6 +35,7 @@ const RegistrationForm = () => {
     <form onSubmit={handleSubmit}>
       <div>
         <label htmlFor="username">Username</label>
+        <Field name="username" type="text" />
         <input
           id="username"
           name="username"
@@ -46,6 +47,7 @@ const RegistrationForm = () => {
 
       <div>
         <label htmlFor="email">Email</label>
+        <Field name="username" type="password" />
         <input
           id="email"
           name="email"
@@ -57,6 +59,7 @@ const RegistrationForm = () => {
 
       <div>
         <label htmlFor="password">Password</label>
+        <Field name="password" type="password" />
         <input
           id="password"
           name="password"
