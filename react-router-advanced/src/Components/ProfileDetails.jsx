@@ -1,7 +1,12 @@
 import React from "react";
 
-function ProfileSettings() {
-  return <h3>Profile Settings</h3>;
-}
+const ProfileDetails = () => {
+  return (
+    <div>
+      <h2>Profile Details</h2>
+      <p>Here are the details of your profile.</p>
+    </div>
+  );
+};
 
-export default ProfileSettings;
+export default ProfileDetails;

@@ -5,6 +5,8 @@ import Home from "./Components/Home";
 import About from "./Components/About";
 import Profile from "./components/Profile";
 import ProtectedRoute from "./components/ProtectedRoute";
+import ProfileDetails from "./components/ProfileDetails";
+import ProfileSettings from "./Components/ProfileSettings";
 
 function App() {
   const isAuthenticated = true; // Replace with your actual authentication logic
@@ -15,6 +17,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
+          <Route path="details" element={<ProfileDetails />} />
+          <Route path="settings" element={<ProfileSettings />} />
           <Route path="/profile/*" element={<Profile />} />
           <Route path="/post/:postId" element={<Post />} />
         </Route>
