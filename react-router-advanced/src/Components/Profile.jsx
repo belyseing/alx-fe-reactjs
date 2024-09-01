@@ -6,7 +6,7 @@ import ProfileSettings from "./ProfileSettings";
 function Profile() {
   return (
     <div>
-      <h2>Profile Page</h2>
+      <h2>Profile </h2>
       <Routes>
         <Route path="details" element={<ProfileDetails />} />
         <Route path="settings" element={<ProfileSettings />} />
