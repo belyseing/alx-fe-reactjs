@@ -1,12 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Post from "./components/Post";
-import Home from "./Components/Home";
-import About from "./Components/About";
+import Home from "./components/Home";
+import About from "./components/About";
 import Profile from "./components/Profile";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ProfileDetails from "./components/ProfileDetails";
-import ProfileSettings from "./Components/ProfileSettings";
+import ProfileSettings from "./components/ProfileSettings";
 
 function App() {
   const isAuthenticated = true; // Replace with your actual authentication logic
