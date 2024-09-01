@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Post from "./components/Post";
 import Home from "./Components/Home";
+import About from "./Components/About";
 import Profile from "./components/Profile";
 import ProtectedRoute from "./components/ProtectedRoute";
 
