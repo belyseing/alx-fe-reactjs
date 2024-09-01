@@ -11,7 +11,7 @@ const RegistrationForm = () => {
     const errors = {};
 
     if (!username) {
-      errors.username = "Username ";
+      errors.username = "Username";
     }
     if (!email) {
       errors.email = "Email";
