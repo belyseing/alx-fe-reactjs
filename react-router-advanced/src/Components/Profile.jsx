@@ -1,7 +1,4 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
-import ProfileDetails from "./ProfileDetails";
-import ProfileSettings from "./ProfileSettings.jsx";
 
 function Profile() {
   return (
