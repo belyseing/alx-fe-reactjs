@@ -43,5 +43,3 @@ test("deletes a todo", () => {
 
   expect(screen.queryByText(/Learn React/i)).not.toBeInTheDocument();
 });
-
-export default TodoList.test;
