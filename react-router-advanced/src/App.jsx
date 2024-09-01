@@ -11,14 +11,10 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route
-          path="/profile/*"
-          element={
-            <ProtectedRoute isAuthenticated={isAuthenticated}>
-              <Profile />
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/profile" element={<Profile />} />
+        <ProtectedRoute isAuthenticated={isAuthenticated}>
+          <Profile />
+        </ProtectedRoute>
         <Route path="/blog/:id" element={<BlogPost />} />
       </Routes>
     </Router>
