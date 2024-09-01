@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Profile from "./components/Profile.jsx";
+import Profile from "./components/Profile";
 import BlogPost from "./components/BlogPost";
 import ProtectedRoute from "./components/ProtectedRoute"; // Import ProtectedRoute
 
@@ -12,6 +12,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/profile" element={<Profile />} />
+        {/* Other routes */}
         <ProtectedRoute isAuthenticated={isAuthenticated}>
           <Profile />
         </ProtectedRoute>
