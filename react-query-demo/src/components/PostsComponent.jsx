@@ -20,7 +20,7 @@ function PostsComponent() {
     keepPreviousData: true, // Keep previous data while fetching new data
   });
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div>...</div>;
   if (isError) return <div>Error: {error.message}</div>;
 
   return (
