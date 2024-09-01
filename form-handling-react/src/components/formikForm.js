@@ -17,7 +17,7 @@ const FormikForm = () => {
     >
       <Form>
         <div>
-          <label htmlFor="username"></label>
+          <label htmlFor="username">Username</label>
           <Field name="username" type="text" />
           <ErrorMessage name="username" component="div" />
         </div>
@@ -41,4 +41,3 @@ const FormikForm = () => {
 };
 
 export default FormikForm;
-
