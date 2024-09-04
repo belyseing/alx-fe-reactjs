@@ -1,6 +1,6 @@
 function UserProfile() {
   return (
-    <div className="bg-gray-100 p-4 sm:p-8 max-w-xs sm:max-w-sm mx-auto my-10 sm:my-20 rounded-lg shadow-lg">
+    <div className="bg-gray-100 p-4 md:p-8 max-w-xs md:max-w-sm mx-auto my-10 md:my-20 rounded-lg shadow-lg">
       <img
         className="rounded-full w-24 sm:w-36 h-24 sm:h-36 mx-auto"
         src="https://via.placeholder.com/150"
