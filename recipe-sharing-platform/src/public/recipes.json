@@ -2,8 +2,39 @@
   {
     "id": 1,
     "name": "Spaghetti Bolognese",
-    "image": "/images/spaghetti.jpg",
-    "ingredients": ["spaghetti", "ground beef", "tomato sauce"],
-    "instructions": ["Cook the pasta", "Brown the meat", "Mix with sauce", "Serve hot"]
+    "imageUrl": "/images/spaghetti.jpg",
+    "ingredients": [
+      "400g spaghetti",
+      "200g ground beef",
+      "1 onion, chopped",
+      "2 garlic cloves, minced",
+      "400g tomato sauce"
+    ],
+    "instructions": [
+      "Boil the spaghetti according to the package instructions.",
+      "In a pan, cook the ground beef until browned.",
+      "Add the onion and garlic, and cook until soft.",
+      "Mix in the tomato sauce and simmer for 10 minutes.",
+      "Serve the sauce over the spaghetti."
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Chicken Alfredo",
+    "imageUrl": "/images/alfredo.jpg",
+    "ingredients": [
+      "300g fettuccine",
+      "2 chicken breasts, sliced",
+      "200ml cream",
+      "100g parmesan cheese, grated",
+      "2 garlic cloves, minced"
+    ],
+    "instructions": [
+      "Boil the fettuccine according to the package instructions.",
+      "In a pan, cook the chicken until golden.",
+      "Add the garlic and cook for 1 minute.",
+      "Mix in the cream and parmesan cheese, and simmer for 5 minutes.",
+      "Serve the sauce over the fettuccine."
+    ]
   }
 ]

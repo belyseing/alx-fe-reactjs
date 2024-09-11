@@ -1,52 +1,76 @@
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import recipes from "../public/recipes.json"; // Assuming your recipes are stored in a JSON file
-
 
 const RecipeDetail = () => {
-  const { id } = useParams();
-  const [recipe, setRecipe] = useState(null);
+  const { id } = useParams(); // Extract recipe ID from the URL
+  const [recipe, setRecipe] = useState(null); // State to store recipe data
+  const [loading, setLoading] = useState(true); // State to handle loading
+  const [error, setError] = useState(null); // State to handle errors
 
   useEffect(() => {
-    // Fetch the recipe details based on the ID from the route params
-    const selectedRecipe = recipes.find((recipe) => recipe.id === parseInt(id));
-    setRecipe(selectedRecipe);
-  }, [id]);
+    // Fetch the data from the public folder
+    fetch("/recipes.json")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch recipes");
+        }
+        return response.json(); // Parse the JSON response
+      })
+      .then((data) => {
+        // Find the recipe by ID
+        const selectedRecipe = data.find(
+          (recipe) => recipe.id === parseInt(id, 10)
+        );
+        if (selectedRecipe) {
+          setRecipe(selectedRecipe); // Set the recipe state
+        } else {
+          setError("Recipe not found");
+        }
+        setLoading(false); // Stop loading
+      })
+      .catch((err) => {
+        setError(err.message); // Set error state
+        setLoading(false); // Stop loading
+      });
+  }, [id]); // Run the effect whenever the ID changes
 
-  if (!recipe) {
+  // Handle loading state
+  if (loading) {
     return <p>Loading recipe...</p>;
   }
 
+  // Handle error state
+  if (error) {
+    return <p>{error}</p>;
+  }
+
+  // If the recipe is not found
+  if (!recipe) {
+    return <p>Recipe not found</p>;
+  }
+
   return (
-    <div className="max-w-3xl mx-auto p-6">
-      <h1 className="text-4xl font-bold mb-4">{recipe.name}</h1>
+    <div className="container mx-auto p-4">
+      <h1 className="text-3xl font-bold mb-4">{recipe.name}</h1>
       <img
-        src={recipe.image}
+        src={recipe.imageUrl}
         alt={recipe.name}
-        className="w-full h-64 object-cover rounded-lg mb-6"
+        className="w-full h-auto mb-4"
       />
-      <div className="mb-4">
-        <h2 className="text-2xl font-semibold mb-2">Ingredients</h2>
-        <ul className="list-disc list-inside space-y-1">
-          {recipe.ingredients.map((ingredient, index) => (
-            <li key={index}>{ingredient}</li>
-          ))}
-        </ul>
-      </div>
-      <div>
-        <h2 className="text-2xl font-semibold mb-2">Instructions</h2>
-        <ol className="list-decimal list-inside space-y-2">
-          {recipe.instructions.map((step, index) => (
-            <li key={index}>{step}</li>
-          ))}
-        </ol>
-      </div>
-      <button
-        onClick={() => navigate(-1)}
-        className="bg-blue-500 text-white py-2 px-4 rounded-lg mb-4"
-      >
-        Back to Recipes
-      </button>
+
+      <h2 className="text-2xl font-semibold mb-2">Ingredients</h2>
+      <ul className="list-disc pl-6">
+        {recipe.ingredients.map((ingredient, index) => (
+          <li key={index}>{ingredient}</li>
+        ))}
+      </ul>
+
+      <h2 className="text-2xl font-semibold mt-4 mb-2">Instructions</h2>
+      <ol className="list-decimal pl-6">
+        {recipe.instructions.map((instruction, index) => (
+          <li key={index}>{instruction}</li>
+        ))}
+      </ol>
     </div>
   );
 };
