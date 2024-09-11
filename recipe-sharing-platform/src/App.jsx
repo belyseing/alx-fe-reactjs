@@ -1,9 +1,10 @@
 import { useState } from "react";
+import HomePage from "./components/HomePage";// Import the HomePage component
 
 function App() {
   return (
-    <div className="text-blue-500">
-      <h1>Hello, Recipe Sharing Platform!</h1>
+    <div className="App">
+      <HomePage /> {/* Use the HomePage component */}
     </div>
   );
 }
