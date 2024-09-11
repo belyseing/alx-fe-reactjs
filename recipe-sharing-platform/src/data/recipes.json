@@ -1,0 +1,9 @@
+[
+  {
+    "id": 1,
+    "name": "Spaghetti Bolognese",
+    "image": "/images/spaghetti.jpg",
+    "ingredients": ["spaghetti", "ground beef", "tomato sauce"],
+    "instructions": ["Cook the pasta", "Brown the meat", "Mix with sauce", "Serve hot"]
+  }
+]
