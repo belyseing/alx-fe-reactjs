@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import recipes from "../data/recipes.json"; // Assuming your recipes are stored in a JSON file
+import recipes from "../public/recipes.json"; // Assuming your recipes are stored in a JSON file
+
 
 const RecipeDetail = () => {
   const { id } = useParams();
