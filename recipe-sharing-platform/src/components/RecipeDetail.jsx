@@ -6,15 +6,24 @@ const RecipeDetail = () => {
   const [recipe, setRecipe] = useState(null); // To store the fetched recipe data
 
   useEffect(() => {
-    // Fetch the recipe data from the JSON file or an API
+    // Fetch the recipe data from the JSON file
     fetch("/data/recipes.json")
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
       .then((data) => {
         // Find the recipe with the matching ID
         const selectedRecipe = data.find(
           (recipe) => recipe.id === parseInt(id)
         );
-        setRecipe(selectedRecipe);
+        if (selectedRecipe) {
+          setRecipe(selectedRecipe);
+        } else {
+          console.error("Recipe not found");
+        }
       })
       .catch((error) => console.error("Error fetching recipe:", error));
   }, [id]); // This runs every time the `id` changes
