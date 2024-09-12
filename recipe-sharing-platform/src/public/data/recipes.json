@@ -4,13 +4,21 @@
     "name": "Spaghetti Bolognese",
     "image": "/images/spaghetti.jpg",
     "ingredients": ["Spaghetti", "Minced beef", "Tomato sauce"],
-    "steps": ["Boil the spaghetti.", "Cook the minced beef.", "Add the tomato sauce and simmer."]
+    "steps": [
+      "Boil the spaghetti.",
+      "Cook the minced beef.",
+      "Add the tomato sauce and simmer."
+    ]
   },
   {
     "id": 2,
     "name": "Chicken Curry",
     "image": "/images/chicken-curry.jpg",
     "ingredients": ["Chicken", "Curry powder", "Coconut milk"],
-    "steps": ["Cook the chicken.", "Add curry powder.", "Pour coconut milk and simmer."]
+    "steps": [
+      "Cook the chicken.",
+      "Add curry powder.",
+      "Pour coconut milk and simmer."
+    ]
   }
 ]
