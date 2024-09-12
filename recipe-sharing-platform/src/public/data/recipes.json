@@ -2,15 +2,13 @@
   {
     "id": 1,
     "name": "Spaghetti Bolognese",
-    "ingredients": ["Spaghetti", "Tomato Sauce", "Ground Beef"],
-    "steps": ["Boil pasta", "Cook meat", "Mix with sauce"],
-    "image": "/images/spaghetti-bolognese.jpg"
+    "ingredients": ["Spaghetti", "Minced beef", "Tomato sauce"],
+    "instructions": "Boil spaghetti. Cook beef. Mix with sauce."
   },
   {
     "id": 2,
     "name": "Chicken Curry",
-    "ingredients": ["Chicken", "Curry Powder", "Coconut Milk"],
-    "steps": ["Cook chicken", "Add curry powder", "Pour coconut milk"],
-    "image": "/images/chicken-curry.jpg"
+    "ingredients": ["Chicken", "Curry powder", "Coconut milk"],
+    "instructions": "Cook chicken. Add curry powder and coconut milk. Simmer."
   }
 ]
