@@ -1,13 +1,13 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import recipes from "../data/recipes.json"; // Import the JSON file
+import recipes from "../data/recipes.json"; // Adjust the path if necessary
 
 const RecipeDetail = () => {
   const { id } = useParams(); // Get recipe ID from the URL
   const [recipe, setRecipe] = useState(null); // To store the fetched recipe data
 
   useEffect(() => {
-    // Find the recipe with the matching ID directly from the imported JSON
+    // Find the recipe with the matching ID
     const selectedRecipe = recipes.find((recipe) => recipe.id === parseInt(id));
     if (selectedRecipe) {
       setRecipe(selectedRecipe);
