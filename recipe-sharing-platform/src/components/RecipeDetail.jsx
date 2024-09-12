@@ -31,6 +31,7 @@ const RecipeDetail = () => {
   if (!recipe) {
     return <div>Loading...</div>; // Show loading while fetching the recipe data
   }
+ 
 
   return (
     <div className="recipe-detail">
