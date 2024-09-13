@@ -53,7 +53,10 @@ const AddRecipeForm = () => {
 
       {errors && <p className="text-red-500 mb-4">{errors}</p>}
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form
+        onSubmit={handleSubmit}
+        className="space-y-4 shadow-md bg-white rounded-lg p-6"
+      >
         {/* Recipe Title */}
         <div>
           <label className="block text-lg font-semibold mb-2">
