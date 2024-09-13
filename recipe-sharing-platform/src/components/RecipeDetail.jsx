@@ -8,7 +8,7 @@ const RecipeDetail = () => {
 
   useEffect(() => {
     // Fetch the recipe data from the JSON file
-    fetch("scr/public/data/recipes.json")
+    fetch("/data/recipes.json")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch the recipe data");
@@ -49,7 +49,7 @@ const RecipeDetail = () => {
       <img
         src={recipe.image}
         alt={recipe.name}
-        className="mb-6 rounded-lg w-full sm:w-1/2 lg:w-1/3"
+        className="mb-6 rounded-lg w-full sm:w-1/2 "
       />
 
       <h2 className="text-2xl font-semibold">Ingredients</h2>
@@ -61,8 +61,8 @@ const RecipeDetail = () => {
 
       <h2 className="text-2xl font-semibold mt-6">Instructions</h2>
       <ol className="list-decimal pl-6">
-        {recipe.instructions.map((instruction, index) => (
-          <li key={index}>{instruction}</li>
+        {recipe.instructions.map((instructions, index) => (
+          <li key={index}>{instructions}</li>
         ))}
       </ol>
     </div>
