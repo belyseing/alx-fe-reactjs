@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "name": "Spaghetti Bolognese",
+    "image": "https://www.kitchensanctuary.com/spaghetti-bolognese/",
+    "ingredients": ["spaghetti", "minced meat", "tomato sauce"],
+    "instructions": ["Boil spaghetti", "Cook minced meat", "Add sauce"]
+  },
+  {
+    "id": 2,
+    "name": "Chicken Curry",
+    "image": "https://www.whiskaffair.com/andhra-chicken-curry-recipe/",
+    "ingredients": ["chicken", "curry powder", "coconut milk"],
+    "instructions": ["Cook chicken", "Add curry powder", "Pour coconut milk"]
+  }
+]
