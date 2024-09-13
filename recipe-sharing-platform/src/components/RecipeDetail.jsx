@@ -8,7 +8,7 @@ const RecipeDetail = () => {
 
   useEffect(() => {
     // Fetch the recipe data from the JSON file
-    fetch("/data/recipes.json")
+    fetch("scr/public/data/recipes.json")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch the recipe data");
