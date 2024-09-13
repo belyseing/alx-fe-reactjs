@@ -17,6 +17,17 @@ const HomePage = () => {
       <h1 className="text-4xl font-bold text-center mb-8">
         Recipe Sharing Platform
       </h1>
+      {/* Add Recipe Link */}
+      <div className="text-center mb-8">
+        <Link
+          to="/add-recipe"
+          className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition"
+        >
+          Add a New Recipe
+        </Link>
+      </div>
+
+      {/* Recipe Listing */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {recipes.map((recipe) => (
           <div
