@@ -24,9 +24,13 @@ const RecipeDetail = () => {
   }
 
   return (
-    <div className="recipe-detail">
+    <div className="recipe-detail shadow-md  p-6 rounded-lg">
       <h1 className="text-4xl font-bold">{recipe.name}</h1>
-      <img src={recipe.image} alt={recipe.name} className="my-6 rounded-lg" />
+      <img
+        src={recipe.image}
+        alt={recipe.name}
+        className="my-6 rounded-lg shadow-lg"
+      />
 
       <h2 className="text-2xl font-semibold">Ingredients</h2>
       <ul className="list-disc pl-6">
