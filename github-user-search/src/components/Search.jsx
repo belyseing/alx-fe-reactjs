@@ -25,7 +25,8 @@ const Search = () => {
             setUserData(data);
 
         } catch (err) {
-            setError("Looks like we can't find the user"); // Adjusted to match expected string
+            console.error(err); // Log the original error
+            setError("Looks like we can't find the user");
             setUserData(null);
         } finally {
             setLoading(false);
@@ -46,12 +47,14 @@ const Search = () => {
 
             {loading && <p>Loading...</p>}
             {error && <p>{error}</p>}
-            {userData && (
+            {userData ? (
                 <div>
                     <h2>{userData.name}</h2>
                     <img src={userData.avatar_url} alt={`${userData.name}'s avatar`} width="100" />
                     <p><a href={userData.html_url} target="_blank" rel="noopener noreferrer">View Profile</a></p>
                 </div>
+            ) : (
+                !loading && !error && <div>Looks like we can't find the user</div>
             )}
         </div>
     );

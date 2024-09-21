@@ -4,7 +4,7 @@ const fetchUserData = async (username) => {
     if (!username) throw new Error('Username is required.');
 
     try {
-        const response = await axios.get(`https://api.github.com/users/${username}`);
+        const response = await axios.get(`https://api.github.com/users/${belyseing}`);
         return response.data;
     } catch (error) {
         if (error.response && error.response.status === 404) {
