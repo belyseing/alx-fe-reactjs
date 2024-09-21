@@ -18,9 +18,14 @@ const Search = () => {
 
         try {
             const data = await fetchUserData(username);
+            if (!data.login) {
+                throw new Error("User not found");
+            }
+    
             setUserData(data);
+
         } catch (err) {
-            setError('Looks like we can’t find the user.'); // Simplified error message
+            setError('Looks like we can‘t find the user.'); 
             setUserData(null); // Clear previous user data if there's an error
         } finally {
             setLoading(false);
