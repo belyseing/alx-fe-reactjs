@@ -21,7 +21,7 @@ const fetchUserData = async (username, location = '', minRepos = 0) => {
     const url = `https://api.github.com/search/users?${query}`;
 
     try {
-        const response = await axios.get(`https://api.github.com/users/${username}`);
+        const response = await axios.get(url); // Use the search endpoint here
         return response.data.items; // Return the items (array of users)
     } catch (error) {
         if (error.response && error.response.status === 404) {
