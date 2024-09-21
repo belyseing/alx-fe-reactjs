@@ -15,19 +15,19 @@ const Search = () => {
         e.preventDefault();
         setLoading(true);
         setError(null);
-        setUserData(null); // Reset userData on new search
+        setUserData(null); // Reset userData on new search    
 
         try {
             const data = await fetchUserData(username);
-            if (!data.login) {
+            if (!data || !data.login) { // Check if data is valid and contains login
                 throw new Error("Looks like we can't find the user");
             }
     
             setUserData(data);
 
         } catch (err) {
-            setError("Looks like we can't find the user"); // Adjusted to match expected string
-            setUserData(null);
+            console.error(err); // Log the original error
+            setError(err.message); // Set the error message
         } finally {
             setLoading(false);
         }
