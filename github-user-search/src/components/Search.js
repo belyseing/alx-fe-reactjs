@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import fetchUserData from '../services/githubService'; // Adjust path if necessary
+import fetchUserData from '../services/githubService';
 
 const Search = () => {
     const [username, setUsername] = useState('');
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null); // Move this declaration above
+    const [error, setError] = useState(null);
 
     const handleInputChange = (e) => {
         setUsername(e.target.value);
@@ -26,7 +26,6 @@ const Search = () => {
         }
     };
 
-    // Single return statement for the component
     return (
         <div>
             <form onSubmit={handleSubmit}>
