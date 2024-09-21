@@ -1,5 +1,10 @@
 import axios from 'axios';
 
+
+
+const BASE_URL = 'https://api.github.com/search/users?q=';
+
+
 const fetchUserData = async (username, location = '', minRepos = 0) => {
     if (!username) throw new Error('Username is required.');
 
