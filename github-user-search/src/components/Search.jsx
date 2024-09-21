@@ -5,9 +5,9 @@ const Search = () => {
     const [username, setUsername] = useState('');
     const [location, setLocation] = useState(''); // New state for location
     const [minRepos, setMinRepos] = useState(''); // New state for minimum repositorie
-    const [userData, setUserData] = useState(null);
+    const [userData, setUserData] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState('');
 
     const handleInputChange = (e) => {
         setUsername(e.target.value);
@@ -28,8 +28,8 @@ const Search = () => {
         setUserData(null); // Reset userData on new search    
 
         try {
-            const data = await fetchUserData(username);
-            if (!data || !data.login) { // Check if data is valid and contains login
+            const data = await fetchUserData(username,location, minRepos);
+            if (!data || (Array.isArray(data) && data.length === 0) || (!Array.isArray(data) && !data.login)) { // Check if data is valid and contains login
                 throw new Error("Looks like we cant find the user");
             }
     
