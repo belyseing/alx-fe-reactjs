@@ -19,9 +19,9 @@ const Search = () => {
 
         try {
             const data = await fetchUserData(username);
-            setUserData(data); // Set userData on success
+            setUserData(data);
         } catch (err) {
-            setError(err.message); // Capture the error message
+            setError(err.message);
         } finally {
             setLoading(false);
         }
