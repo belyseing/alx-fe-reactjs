@@ -15,19 +15,15 @@ const Search = () => {
         e.preventDefault();
         setLoading(true);
         setError(null);
-        setUserData(null); 
+        setUserData(null);
 
         try {
             const data = await fetchUserData(username);
-            // Check if the response data has a valid structure
-            if (!data || !data.login) {
-                throw new Error("Looks like we can't find the user");
-            }
-            setUserData(data);
+            setUserData(data); // Set userData on success
         } catch (err) {
-            setError(err.message); // Handle the error if fetch fails
+            setError(err.message); // Capture the error message
         } finally {
-            setLoading(false); // End loading state
+            setLoading(false);
         }
     };
 
@@ -46,12 +42,10 @@ const Search = () => {
                 </button>
             </form>
 
-            {/* Conditional Rendering */}
-            {loading && <p>Loading...</p>} {/* Display loading message */}
-            {error && <p className='text-red-500'>{error}</p>} {/* Display error message */}
+            {loading && <p>Loading...</p>}
+            {error && <p className='text-red-500'>{error}</p>}
 
-            {userData ? ( 
-                // display user info
+            {userData ? (
                 <div>
                     <h2 className="text-xl font-bold">{userData.login}</h2>
                     <img src={userData.avatar_url} alt={`${userData.login}'s avatar`} width="100" />
