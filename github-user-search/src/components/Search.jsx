@@ -50,7 +50,7 @@ const Search = () => {
             {loading && <p>Loading...</p>}
             {error && <p className='text-red-500'>{error}</p>} {/* Displays error message */}
 
-            {userData ? (
+            {userData && !error && !loading && (
                 <div>
                     <h2 className="text-xl font-bold">{userData.login}</h2>
                     <img src={userData.avatar_url} alt={`${userData.login}'s avatar`} width="100" />
@@ -65,9 +65,10 @@ const Search = () => {
                         </a>
                     </p>
                 </div>
-            ) : (
-                !loading && !error && <p>Looks like we can't find the user.</p> // Show if no data is found
             )}
+
+            {/* If no userData and no error, display the message */}
+            {!userData && !loading && !error && <p>Looks like we can't find the user.</p>}
         </div>
     );
 };
