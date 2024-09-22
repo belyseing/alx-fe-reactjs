@@ -15,7 +15,7 @@ const Search = () => {
         e.preventDefault();
         setLoading(true);
         setError(null);
-        setUserData(null); // Reset userData on new search
+        setUserData(null); 
 
         try {
             const data = await fetchUserData(username);
@@ -50,7 +50,8 @@ const Search = () => {
             {loading && <p>Loading...</p>} {/* Display loading message */}
             {error && <p className='text-red-500'>{error}</p>} {/* Display error message */}
 
-            {userData ? ( // If userData is available, display user info
+            {userData ? ( 
+                // display user info
                 <div>
                     <h2 className="text-xl font-bold">{userData.login}</h2>
                     <img src={userData.avatar_url} alt={`${userData.login}'s avatar`} width="100" />
@@ -66,7 +67,7 @@ const Search = () => {
                     </p>
                 </div>
             ) : (
-                !loading && !error && <p>Looks like we can't find the user.</p> // Show this message when there's no userData
+                !loading && !error && <p>Looks like we can't find the user.</p>
             )}
         </div>
     );
