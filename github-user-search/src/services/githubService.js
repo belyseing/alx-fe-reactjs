@@ -3,9 +3,15 @@ import axios from 'axios';
 const fetchUserData = async (username) => {
     if (!username) throw new Error('Username is required.');
 
-    const url = `https://api.github.com/users/${username}`;
-    const response = await axios.get(url);
-    return response.data; // Return user data
+    try {
+        const response = await axios.get(`https://api.github.com/users/${username}`);
+        return response.data; // Returns user data
+    } catch (error) {
+        if (error.response && error.response.status === 404) {
+            throw new Error("Looks like we can't find the user");
+        }
+        throw new Error('Error fetching user data: ' + error.message);
+    }
 };
 
-export default fetchUserData;
+export default fetchUserData; // Default export
