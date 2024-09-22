@@ -53,29 +53,34 @@ const Search = () => {
 
             {/* Conditional Rendering */}
             {loading && <p>Loading...</p>}
-            {error && <p className='text-red-500'>{error}</p>} {/* Displays error message */}
+        {error && <p className='text-red-500'>{error}</p>} {/* Displays error message */}
 
-            {userData && !error && !loading && (
-                <div>
-                    <h2 className="text-xl font-bold">{userData.login}</h2>
-                    <img src={userData.avatar_url} alt={`${userData.login}'s avatar`} width="100" />
-                    <p>
-                        <a 
-                            href={userData.html_url} 
-                            target="_blank" 
-                            rel="noopener noreferrer" 
-                            className="text-blue-500 underline"
-                        >
-                            View Profile
-                        </a>
-                    </p>
-                </div>
-            )}
+        {/* Display user data */}
+        {Array.isArray(userData) && userData.length > 0 && (
+            <div>
+                {userData.map((user) => (
+                    <div key={user.id} className="border p-4 mb-2 rounded">
+                        <h2 className="text-xl font-bold">{user.login}</h2> {/* Access login here */}
+                        <img src={user.avatar_url} alt={`${user.login}'s avatar`} width="100" />
+                        <p>
+                            <a 
+                                href={user.html_url} 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="text-blue-500 underline"
+                            >
+                                View Profile
+                            </a>
+                        </p>
+                    </div>
+                ))}
+            </div>
+        )}
 
-            {/* If no userData and no error, display the message */}
-            {!userData && !loading && !error && <p>Looks like we cant find the user</p>}
-        </div>
-    );
+        {/* If no userData and no error, display the message */}
+        {!userData && !loading && !error && <p>Looks like we can't find the user</p>}
+    </div>
+);
 };
 
 export default Search;
