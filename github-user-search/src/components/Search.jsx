@@ -2,30 +2,32 @@ import React, { useState } from 'react';
 import fetchUserData from '../services/githubService';
 
 const Search = () => {
-    const [username, setUsername] = useState(''); // Store input username
-    const [userData, setUserData] = useState(null); // Store fetched user data
-    const [loading, setLoading] = useState(false); // Loading state
-    const [error, setError] = useState(null); // Error message
+    const [username, setUsername] = useState('');
+    const [userData, setUserData] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-    // Handle input change
     const handleInputChange = (e) => {
         setUsername(e.target.value);
     };
 
-    // Handle form submission
     const handleSubmit = async (e) => {
-        e.preventDefault(); // Prevent default form behavior
-        setLoading(true); // Set loading to true
-        setError(null); // Reset error message
-        setUserData(null); // Reset user data
+        e.preventDefault();
+        setLoading(true);
+        setError(null);
+        setUserData(null);
 
         try {
-            const data = await fetchUserData(username); // Fetch user data
-            setUserData(data); // Set user data on successful fetch
+            const data = await fetchUserData(username);
+            // Check if data is empty or does not have a login
+            if (!data || !data.login) {
+                throw new Error("Looks like we can't find the user");
+            }
+            setUserData(data);
         } catch (err) {
-            setError(err.message); // Set error message on failure
+            setError(err.message);
         } finally {
-            setLoading(false); // Set loading to false regardless of success/failure
+            setLoading(false);
         }
     };
 
@@ -45,13 +47,13 @@ const Search = () => {
             </form>
 
             {/* Conditional Rendering */}
-            {loading && <p>Loading...</p>} {/* Show loading message */}
-            {error && <p className='text-red-500'>{error}</p>} {/* Show error message */}
+            {loading && <p>Loading...</p>}
+            {error && <p className='text-red-500'>{error}</p>} {/* Displays error message */}
 
-            {userData && ( // If userData exists, display user info
+            {userData ? (
                 <div>
-                    <h2 className="text-xl font-bold">{userData.login}</h2> {/* User's name */}
-                    <img src={userData.avatar_url} alt={`${userData.login}'s avatar`} width="100" /> {/* User's avatar */}
+                    <h2 className="text-xl font-bold">{userData.login}</h2>
+                    <img src={userData.avatar_url} alt={`${userData.login}'s avatar`} width="100" />
                     <p>
                         <a 
                             href={userData.html_url} 
@@ -60,9 +62,11 @@ const Search = () => {
                             className="text-blue-500 underline"
                         >
                             View Profile
-                        </a> {/* Link to GitHub profile */}
+                        </a>
                     </p>
                 </div>
+            ) : (
+                !loading && !error && <p>Looks like we can't find the user.</p> // Show if no data is found
             )}
         </div>
     );
