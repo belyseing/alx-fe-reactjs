@@ -19,14 +19,15 @@ const Search = () => {
 
         try {
             const data = await fetchUserData(username);
+            // Check if the response data has a valid structure
             if (!data || !data.login) {
                 throw new Error("Looks like we can't find the user");
             }
             setUserData(data);
         } catch (err) {
-            setError(err.message);
+            setError(err.message); // Handle the error if fetch fails
         } finally {
-            setLoading(false);
+            setLoading(false); // End loading state
         }
     };
 
