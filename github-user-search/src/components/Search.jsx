@@ -21,7 +21,7 @@ const Search = () => {
             const data = await fetchUserData(username);
             // Check if data is empty or does not have a login
             if (!data || !data.login) {
-                throw new Error("Looks like we can't find the user");
+                throw new Error("Looks like we cant find the user");
             }
             setUserData(data);
         } catch (err) {
@@ -68,7 +68,7 @@ const Search = () => {
             )}
 
             {/* If no userData and no error, display the message */}
-            {!userData && !loading && !error && <p>Looks like we can't find the user.</p>}
+            {!userData && !loading && !error && <p>Looks like we cant find the user</p>}
         </div>
     );
 };
