@@ -8,7 +8,6 @@ const Search = () => {
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    
 
     const handleInputChange = (e) => {
         setUsername(e.target.value);
@@ -26,7 +25,7 @@ const Search = () => {
         e.preventDefault();
         setLoading(true);
         setError(null);
-        setUserData(null); // Reset userData to an empty array
+        setUserData(null); // Reset userData to null
 
         try {
             const data = await fetchUserData(username, location, minRepos);
@@ -35,9 +34,7 @@ const Search = () => {
             }
 
             setUserData(data);
-
         } catch (err) {
-           
             setError(err.message);
         } finally {
             setLoading(false);
@@ -96,9 +93,7 @@ const Search = () => {
                                 </p>
                             </div>
                         ))
-                    ) : (
-                        <div>Looks like we can't find the user.</div>
-                    )
+                    ) : null // Do not render anything if userData is an empty array
                 ) : (
                     <div>
                         <h2 className="text-xl font-bold">{userData.login}</h2>
@@ -116,7 +111,7 @@ const Search = () => {
                     </div>
                 )
             ) : (
-                !loading && !error && <div>Looks like we can't find the user.</div>
+                !loading && !error && <div>Looks like we can't find the user.</div> // Show only when loading is done and there's no error
             )}
         </div>
     );
