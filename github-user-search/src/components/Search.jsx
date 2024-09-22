@@ -32,8 +32,8 @@ const Search = () => {
             if (!data || (Array.isArray(data) && data.length === 0) || (!Array.isArray(data) && !data.login)) {
                 throw new Error("Looks like we can't find the user");
             }
-
             setUserData(data);
+            
         } catch (err) {
             setError(err.message);
         } finally {
