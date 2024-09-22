@@ -5,9 +5,10 @@ const Search = () => {
     const [username, setUsername] = useState('');
     const [location, setLocation] = useState('');
     const [minRepos, setMinRepos] = useState('');
-    const [userData, setUserData] = useState([]);
+    const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
+    const [error, setError] = useState(null);
+    
 
     const handleInputChange = (e) => {
         setUsername(e.target.value);
@@ -25,7 +26,7 @@ const Search = () => {
         e.preventDefault();
         setLoading(true);
         setError(null);
-        setUserData([]); // Reset userData to an empty array
+        setUserData(null); // Reset userData to an empty array
 
         try {
             const data = await fetchUserData(username, location, minRepos);
@@ -33,10 +34,10 @@ const Search = () => {
                 throw new Error("Looks like we can't find the user");
             }
 
-            setUserData(data); // Ensure this is an array
+            setUserData(data);
 
         } catch (err) {
-            console.error(err);
+           
             setError(err.message);
         } finally {
             setLoading(false);
@@ -76,14 +77,35 @@ const Search = () => {
             {loading && <p>Loading...</p>}
             {error && <p className='text-red-500'>{error}</p>}
 
-            {Array.isArray(userData) && userData.length > 0 ? (
-                userData.map(user => (
-                    <div key={user.id}>
-                        <h2 className="text-xl font-bold">{user.login}</h2>
-                        <img src={user.avatar_url} alt={`${user.login}'s avatar`} width="100" />
+            {userData ? (
+                Array.isArray(userData) ? (
+                    userData.length > 0 ? (
+                        userData.map(user => (
+                            <div key={user.id}>
+                                <h2 className="text-xl font-bold">{user.login}</h2>
+                                <img src={user.avatar_url} alt={`${user.login}'s avatar`} width="100" />
+                                <p>
+                                    <a 
+                                        href={user.html_url} 
+                                        target="_blank" 
+                                        rel="noopener noreferrer" 
+                                        className="text-blue-500 underline"
+                                    >
+                                        View Profile
+                                    </a>
+                                </p>
+                            </div>
+                        ))
+                    ) : (
+                        <div>Looks like we can't find the user.</div>
+                    )
+                ) : (
+                    <div>
+                        <h2 className="text-xl font-bold">{userData.login}</h2>
+                        <img src={userData.avatar_url} alt={`${userData.login}'s avatar`} width="100" />
                         <p>
                             <a 
-                                href={user.html_url} 
+                                href={userData.html_url} 
                                 target="_blank" 
                                 rel="noopener noreferrer" 
                                 className="text-blue-500 underline"
@@ -92,13 +114,12 @@ const Search = () => {
                             </a>
                         </p>
                     </div>
-                ))
+                )
             ) : (
-                !loading && !error && <div>Looks like we can't find the user</div>
+                !loading && !error && <div>Looks like we can't find the user.</div>
             )}
         </div>
     );
 };
-
 
 export default Search;
