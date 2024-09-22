@@ -1,9 +1,6 @@
 import axios from 'axios';
 
-
-
 const BASE_URL = 'https://api.github.com/search/users?q=';
-
 
 const fetchUserData = async (username, location = '', minRepos = 0) => {
     if (!username) throw new Error('Username is required.');
@@ -28,13 +25,15 @@ const fetchUserData = async (username, location = '', minRepos = 0) => {
     try {
         // Make the API call to the search endpoint
         const response = await axios.get(url);
-        
-        // Return items from response, default to empty array if none found
-        return response.data.items || [];
-    } catch (error) {
-        if (error.response && error.response.status === 404) {
+
+        // Check if any users were found
+        if (response.data.total_count === 0) {
             throw new Error("Looks like we can't find the user");
         }
+
+        // Return items from response
+        return response.data.items || [];
+    } catch (error) {
         throw new Error('Error fetching user data: ' + error.message);
     }
 };

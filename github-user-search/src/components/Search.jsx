@@ -33,6 +33,7 @@ const Search = () => {
                 throw new Error("Looks like we can't find the user");
             }
             setUserData(data);
+
             
         } catch (err) {
             setError(err.message);
