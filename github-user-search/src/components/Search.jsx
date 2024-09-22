@@ -3,12 +3,17 @@ import fetchUserData from '../services/githubService';
 
 const Search = () => {
     const [username, setUsername] = useState('');
+    const [location, setLocation] = useState(''); // New state for location
+    const [minRepos, setMinRepos] = useState(''); // New state for repo count
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     const handleInputChange = (e) => {
         setUsername(e.target.value);
+        if (name === 'username') setUsername(value);
+        if (name === 'location') setLocation(value);
+        if (name === 'minRepos') setMinRepos(value);
     };
 
     const handleSubmit = async (e) => {
@@ -18,7 +23,7 @@ const Search = () => {
         setUserData(null);
 
         try {
-            const data = await fetchUserData(username);
+            const data = await fetchUserData(username, location, minRepos);
             // Check if data is empty or does not have a login
             if (!data || !data.login) {
                 throw new Error("Looks like we cant find the user");
