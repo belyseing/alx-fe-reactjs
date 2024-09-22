@@ -1,9 +1,32 @@
 import axios from 'axios';
 
-const fetchUserData = async (username) => {
+
+
+const fetchUserData = async (username , location, minRepos) => {
     if (!username) throw new Error('Username is required.');
 
-    const url = `https://api.github.com/users/${username}`;
+    const baseURL = 'https://api.github.com/search/users?q=';
+     // Start building the query string
+     let query = '';
+
+     // Add the username to the query if it's provided
+     if (username) {
+         query += `${username}`;
+     }
+ 
+     // Add location filter to the query if it's provided
+     if (location) {
+         query += `+location:${location}`;
+     }
+ 
+     // Add min repositories filter if it's provided
+     if (minRepos) {
+         query += `+repos:>${minRepos}`;
+     }
+ 
+     // Construct the full API URL
+     const url = `${baseURL}${query}`;
+ 
     
     try {
         const response = await axios.get(url);
